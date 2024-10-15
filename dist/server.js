@@ -1,6 +1,7 @@
 //This is running a backend server
 //The root of our server is the domain name
 import express from 'express';
+import cors from 'cors';
 const app = express();
 //We need a database of quotes
 const quotes = [
@@ -43,6 +44,8 @@ ie. It sends back an object like the one below:
 //This will take 2 arg
 //is localhost visited, and its just the domain, we would just put a /
 //request is info we receive fromthe browser. response is something we can send back to the browswr
+// Allow other domains to make requests to our server
+app.use(cors());
 // app.get('/', (_, responseObj) => {
 // responseObj.send('Hi there from the server!')
 // })
