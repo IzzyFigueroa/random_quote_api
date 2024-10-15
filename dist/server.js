@@ -21,6 +21,7 @@ const quotes = [
     "JavaScript is the canvas, your code is the art.",
     "Keep coding, keep learning, keep growing with JavaScript."
 ];
+app.use(cors());
 //When a route sends back an aray or an obj it is an api route. 
 //When a route in an api route you should prefix the pass with a /api
 app.get('/api/quote', (_, responseObj) => {
@@ -45,7 +46,6 @@ ie. It sends back an object like the one below:
 //is localhost visited, and its just the domain, we would just put a /
 //request is info we receive fromthe browser. response is something we can send back to the browswr
 // Allow other domains to make requests to our server
-app.use(cors());
 // app.get('/', (_, responseObj) => {
 // responseObj.send('Hi there from the server!')
 // })
