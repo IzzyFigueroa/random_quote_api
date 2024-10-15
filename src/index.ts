@@ -1,53 +1,34 @@
-// Fetch is a function we can call. We pass in a url or address to a server or to a file path
-// Fetch return a promise
+// Add an input to the page that the user can type a city into
 
-//Add an input to the page that the user type a city into
-//When they submit or hit a button, you should grab the city they type and make a request to the weather api to get the current weather by that city name.
+// When they submit or hit a button, you should grab the city they typed and make a request to the weather api
+// to get the current weather by that city name
 
-//once oyu have the weather data, ou tput the current temp, wind speed, and humidity for that city
-const cityForm 
+// Once you have the weather data, output the current temp, wind speed and humidity for that city
 
+const cityForm = document.querySelector('#city-form');
 
-function outputWeatherData(weatherData){
-    const tempOutput = document.querySelector<HTMLElement>('#temp');
-    const windOutput = document.querySelector<HTMLElement>('#wind');
-    const humidityOutput = document.querySelector<HTMLElement>('#humidity');
+function outputWeatherData(weatherData) {
+  const cityOutput = document.querySelector<HTMLHeadingElement>('#city-name');
+  const tempOutput = document.querySelector<HTMLHeadingElement>('#temp');
+  const windOutput = document.querySelector<HTMLHeadingElement>('#wind');
 
-    tempOutput.innerHTML = `Temp: ${Math.round(weatherData.main.temp)}&deg`;
-    
+  cityOutput.innerText = weatherData.name;
+  tempOutput.innerHTML = `Temp: ${Math.round(weatherData.main.temp)}&deg;`;
+  windOutput.innerText = weatherData.wind.speed + 'mph';
 }
 
 async function getWeatherData(eventObj) {
-    eventObj.preventDefault();
+  eventObj.preventDefault();
 
-    const cityInput = document.querySelector('#city-input')
+  const cityInput = document.querySelector<HTMLInputElement>('#city-input');
 
+  const apiKey = '3acc16ffae9e45df92a064e41646355f';
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&units=imperial&appid=` + apiKey;
 
-const apiKey = '50f11befe9053ee3292493b979ea6618';
-const url = 'https://api.openweathermap.org/data/2.5/weather?q=New Jersey&units=imperial&appid=' + apiKey;
+  const resObject = await fetch(url);
+  const data = await resObject.json();
 
-const resObject = await fetch(url);
-const data = await resObject.json();
-
-outputWeatherData(data);
+  outputWeatherData(data);
 }
-
-getWeatherData()
 
 cityForm.addEventListener('submit', getWeatherData)
-// async function getStarwarsData(){
-//     const resOject = await fetch('https://swapi.dev/api/people/');
-//     const data = await resOject.json();
-
-// console.log(data)
-
-// apiPromise.then((responseObj) => {
-//     const dataPromise = responseObj.json();
-
-//     dataPromise.then((data) => {
-//         console.log(data.results[3]);
-//     })
-// });
-}
-
-document.addEventListener('submit',)
