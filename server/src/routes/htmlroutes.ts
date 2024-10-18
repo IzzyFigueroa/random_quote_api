@@ -12,4 +12,4 @@ router.get('*', (_, responseObj: Response) => {
     responseObj.sendFile(path.join(__dirname, '../../../client/dist/index.html'));
 });
 
-export default route;r
+export default router;
